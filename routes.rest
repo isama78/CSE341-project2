@@ -1,0 +1,46 @@
+### GET /
+GET http://localhost:3000/api/v1/categories
+
+### GET /:id
+GET http://localhost:3000/api/v1/categories/65f1a1a1a1a1a1a1a1a1a102
+
+### GET /tracks
+GET http://localhost:3000/api/v1/tracks
+
+### GET /tracks/:id
+GET http://localhost:3000/api/v1/tracks/69b14c9fdbfd213db8d21342
+
+### POST /tracks
+POST http://localhost:3000/api/v1/tracks
+Content-Type: application/json
+
+{
+    "title": "Deep Pulse",
+    "bpm": 126,
+    "key": "C Minor",
+    "genre": "Tech Factory",
+    "durationSeconds": 15000,
+    "fileUrl": "https://storage.googleapis.com/deep-pulse/urban-pulse.wav",
+    "isPublic": true,
+    "createdAt": "2026-01-01T11:00:00Z",
+    "categoryId": "65f1a1a1a1a1a1a1a1a1a102"
+  }
+
+### PUT /tracks/:id
+PUT http://localhost:3000/api/v1/tracks/69b20217eb786e380fa73a00
+Content-Type: application/json
+
+{
+    "title": "Deep Pulse",
+    "bpm": 126,
+    "key": "C Minor",
+    "genre": "Tech Factory",
+    "durationSeconds": 15000,
+    "fileUrl": "https://storage.googleapis.com/deep-pulse/urban-pulse.wav",
+    "isPublic": false,
+    "createdAt": "2026-01-01T11:00:00Z",
+    "categoryId": "65f1a1a1a1a1a1a1a1a1a102"
+  }
+
+### DELETE /tracks/:id
+DELETE http://localhost:3000/api/v1/tracks/69b20217eb786e380fa73a00

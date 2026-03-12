@@ -1,0 +1,210 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Beats & Loops API",
+    "description": "Project for CSE341 - Digital Audio Assets Management",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/categories/": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get all available categories",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get a category by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Category ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/tracks/": {
+      "get": {
+        "tags": [
+          "Tracks"
+        ],
+        "summary": "Get all audio tracks",
+        "description": "Retrieves a list of all audio tracks in the database.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tracks"
+        ],
+        "summary": "Create a new track",
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Track data",
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/v1/tracks/{id}": {
+      "get": {
+        "tags": [
+          "Tracks"
+        ],
+        "summary": "Get a track by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Track ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tracks"
+        ],
+        "summary": "Update an existing track",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Track ID"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Updated track data",
+            "schema": {
+              "$ref": "#/definitions/Track"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tracks"
+        ],
+        "summary": "Delete a track",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Track ID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Track": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Midnight Study"
+        },
+        "bpm": {
+          "type": "number",
+          "example": 85
+        },
+        "key": {
+          "type": "string",
+          "example": "A Minor"
+        },
+        "genre": {
+          "type": "string",
+          "example": "Lo-Fi"
+        },
+        "durationSeconds": {
+          "type": "number",
+          "example": 185
+        },
+        "fileUrl": {
+          "type": "string",
+          "example": "https://example.com/audio.mp3"
+        },
+        "isPublic": {
+          "type": "boolean",
+          "example": true
+        },
+        "categoryId": {
+          "type": "string",
+          "example": "65f1a1a1a1a1a1a1a1a1a101"
+        }
+      }
+    }
+  }
+}
