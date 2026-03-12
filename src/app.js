@@ -4,6 +4,7 @@ import AppError from "./utils/AppError.js";
 import trackRoutes from "./routes/trackRoutes.js";
 import swaggerRoutes from "./routes/swaggerRoutes.js";
 import categoryRoutes from './routes/categoryRoutes.js';
+import cors from 'cors';
 
 const app = express();
 
@@ -11,9 +12,12 @@ const app = express();
 app.use(express.json());
 
 // Basic Health Check Route
-app.get("/health", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({ status: "success", message: "API is healthy" });
 });
+
+// CORS Middleware
+app.use(cors());
 
 // Swagger Routes
 app.use(swaggerRoutes);

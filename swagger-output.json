@@ -5,13 +5,13 @@
     "description": "Project for CSE341 - Digital Audio Assets Management",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-project2-0bf7.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
-    "/health": {
+    "/": {
       "get": {
         "description": "",
         "responses": {
