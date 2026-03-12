@@ -16,7 +16,7 @@ app.get("/health", (req, res) => {
 });
 
 // Swagger Routes
-app.use("/api/v1", swaggerRoutes);
+app.use(swaggerRoutes);
 
 // Routes will be mounted here
 app.use("/api/v1/categories", categoryRoutes);
