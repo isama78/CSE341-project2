@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getAllTracks, getTrack, createTrack, updateTrack, deleteTrack } from '../controllers/trackController.js';
-import { trackValidator } from '../middlewares/validators.js';
+import { trackValidator, validateId } from '../middlewares/validators.js';
 
 const router = Router();
 
@@ -13,8 +13,8 @@ router
 // Route: /api/v1/tracks/:id
 router
   .route('/:id')
-  .get(getTrack)
-  .put(trackValidator, updateTrack)
-  .delete(deleteTrack);
+  .get(validateId, getTrack)
+  .put(validateId, trackValidator, updateTrack)
+  .delete(validateId, deleteTrack);
 
 export default router;

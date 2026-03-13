@@ -1,4 +1,4 @@
-import { body, validationResult } from 'express-validator';
+import { body, param, validationResult } from 'express-validator';
 import AppError from '../utils/AppError.js';
 
 // Helper to check for validation errors
@@ -11,6 +11,12 @@ const validateRequest = (req, res, next) => {
   }
   next();
 };
+
+// Middleware to validate track ID format
+export const validateId = [
+  param('id').isHexadecimal().isLength({ min: 24, max: 24 }).withMessage('Invalid ID format'),
+  validateRequest // Este es el helper que creamos antes para lanzar el AppError
+];
 
 // Rules for creating/updating a track
 export const trackValidator = [
