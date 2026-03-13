@@ -15,7 +15,7 @@ const validateRequest = (req, res, next) => {
 // Middleware to validate track ID format
 export const validateId = [
   param('id').isHexadecimal().isLength({ min: 24, max: 24 }).withMessage('Invalid ID format'),
-  validateRequest // Este es el helper que creamos antes para lanzar el AppError
+  validateRequest
 ];
 
 // Rules for creating/updating a track

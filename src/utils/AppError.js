@@ -8,9 +8,6 @@ class AppError extends Error {
     
     // Mark the error as operational to distinguish it from programming errors
     this.isOperational = true;
-
-    // Capture the stack trace to know where the error occurred (useful for debugging)
-    Error.captureStackTrace(this, this.constructor);
   }
 }
 

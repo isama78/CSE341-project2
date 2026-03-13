@@ -13,6 +13,8 @@ app.use(express.json());
 
 // Basic Health Check Route
 app.get("/", (req, res) => {
+  // #swagger.tags = ['Health Check'];
+  // #swagger.summary = 'Check API Health';
   res.status(200).json({ status: "success", message: "API is healthy" });
 });
 

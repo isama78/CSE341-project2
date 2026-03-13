@@ -13,6 +13,10 @@
   "paths": {
     "/": {
       "get": {
+        "tags": [
+          "Health Check"
+        ],
+        "summary": "Check API Health",
         "description": "",
         "responses": {
           "200": {
