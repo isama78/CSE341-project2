@@ -37,10 +37,3 @@ export const getDB = () => {
   }
   return dbInstance;
 };
-
-/**
- * Closes the database connection
- */
-export const closeDB = async () => {
-  await client.close();
-};

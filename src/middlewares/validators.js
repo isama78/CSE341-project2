@@ -30,3 +30,9 @@ export const trackValidator = [
   body('categoryId').isHexadecimal().isLength({ min: 24, max: 24 }).withMessage('Invalid Category ID format'),
   validateRequest
 ];
+
+export const categoryValidator = [
+  body('name').notEmpty().withMessage('Name is required').trim().isLength({ min: 3 }),
+  body('description').notEmpty().withMessage('Description is required').trim().isLength({ min: 3 }),
+  validateRequest
+];
