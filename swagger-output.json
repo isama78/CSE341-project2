@@ -13,10 +13,6 @@
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Health Check"
-        ],
-        "summary": "Check API Health",
         "description": "",
         "responses": {
           "200": {
@@ -261,6 +257,36 @@
         "responses": {
           "204": {
             "description": "No Content"
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/github/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }

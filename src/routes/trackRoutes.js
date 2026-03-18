@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getAllTracks, getTrack, createTrack, updateTrack, deleteTrack } from '../controllers/trackController.js';
 import { trackValidator, validateId } from '../middlewares/validators.js';
+import { isAuthenticated } from '../middlewares/auth.js';
 
 const router = Router();
 
@@ -8,13 +9,13 @@ const router = Router();
 router
   .route('/')
   .get(getAllTracks)
-  .post(trackValidator, createTrack);
+  .post(isAuthenticated, trackValidator, createTrack);
 
 // Route: /api/v1/tracks/:id
 router
   .route('/:id')
   .get(validateId, getTrack)
-  .put(validateId, trackValidator, updateTrack)
-  .delete(validateId, deleteTrack);
+  .put(isAuthenticated, validateId, trackValidator, updateTrack)
+  .delete(isAuthenticated, validateId, deleteTrack);
 
 export default router;

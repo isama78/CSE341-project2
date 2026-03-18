@@ -3,23 +3,35 @@ import { globalErrorHandler } from "./middlewares/errorHandler.js";
 import AppError from "./utils/AppError.js";
 import trackRoutes from "./routes/trackRoutes.js";
 import swaggerRoutes from "./routes/swaggerRoutes.js";
-import categoryRoutes from './routes/categoryRoutes.js';
-import cors from 'cors';
+import categoryRoutes from "./routes/categoryRoutes.js";
+import cors from "cors";
+import session from "express-session";
+import passport from "./config/passport.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
 // Middlewares
 app.use(express.json());
 
-// Basic Health Check Route
-app.get("/", (req, res) => {
-  // #swagger.tags = ['Health Check'];
-  // #swagger.summary = 'Check API Health';
-  res.status(200).json({ status: "success", message: "API is healthy" });
-});
+// CORS
+app.use(cors({ origin: true, credentials: true })); // Si usas CORS, debe tener credentials
 
-// CORS Middleware
-app.use(cors());
+// Configure session
+app.use(session({
+  secret: 'un-secreto-muy-seguro',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    secure: false, // Ponlo en false para localhost (HTTP)
+    httpOnly: true,
+    sameSite: 'lax' 
+  }
+}));
+
+// 2. Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Swagger Routes
 app.use(swaggerRoutes);
@@ -28,12 +40,25 @@ app.use(swaggerRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/tracks", trackRoutes);
 
+// Authorization Routes 
+app.use("/", authRoutes);
+
+// Home route
+app.get('/', (req, res) => {
+  if (req.isAuthenticated()) {
+    const name = req.user.displayName || req.user.username || req.user.login;
+    res.send(`Logged in as ${name}`);
+  } else {
+    res.send("Logged out. Please go to /login to authenticate.");
+  }
+});
+
 // Handling Undefined Routes
 app.use((req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-// Global Error Handler (Must be the last middleware)
+// Global Error Handler
 app.use(globalErrorHandler);
 
 export default app;
