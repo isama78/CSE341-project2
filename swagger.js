@@ -6,9 +6,9 @@ const doc = {
     description: "Project for CSE341 - Digital Audio Assets Management",
   },
   host: "cse341-project2-0bf7.onrender.com",
-  // host: "localhost:3000",
+  //host: "localhost:3000",
   schemes: ["https"],
-  // schemes: ["http"],
+  //schemes: ["http"],
   definitions: {
     Track: {
       title: "Midnight Study",
