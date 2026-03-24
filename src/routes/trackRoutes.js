@@ -5,13 +5,11 @@ import { isAuthenticated } from '../middlewares/auth.js';
 
 const router = Router();
 
-// Route: /api/v1/tracks
 router
   .route('/')
   .get(getAllTracks)
   .post(isAuthenticated, trackValidator, createTrack);
 
-// Route: /api/v1/tracks/:id
 router
   .route('/:id')
   .get(validateId, getTrack)

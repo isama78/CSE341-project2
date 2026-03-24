@@ -4,7 +4,6 @@ import { Router } from 'express';
 
 const router = Router();
 
-// Route: /api-docs
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default router;
