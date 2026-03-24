@@ -1,4 +1,4 @@
-import swaggerUi from 'swagger-ui-express'; // <-- Importar Swagger UI
+import swaggerUi from 'swagger-ui-express'; 
 import swaggerDocument from '../../swagger-output.json' with {type: 'json'};
 import { Router } from 'express';
 
